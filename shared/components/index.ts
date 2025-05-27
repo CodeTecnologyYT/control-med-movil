@@ -1,0 +1,1 @@
+export {TextCustom} from './text-custom/TextCustom'
