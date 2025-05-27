@@ -1,10 +1,10 @@
-import {Text, View} from "react-native";
+import {Text, View, SafeAreaView} from "react-native";
 
 const ControlMedApp = ()=>{
     return(
-        <View>
+        <SafeAreaView className="bg-red-500">
             <Text>Hello</Text>
-        </View>
+        </SafeAreaView>
     )
 }
 
