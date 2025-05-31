@@ -1,6 +1,7 @@
 import {PressableProps, Pressable} from "react-native";
 import {TextCustom} from '@/shared/components/text-custom/TextCustom'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import {Colors} from "@/shared/constants/colors";
 
 
 type FontAwesomeName = keyof typeof FontAwesome.glyphMap;
@@ -22,7 +23,7 @@ export const ButtonCustom = ({children, onPress, isPrimary = false, iconName}: P
             ].join(" ")}
             onPress={onPress}>
             <TextCustom textWeight="semibold" textColor={isPrimary ? "active" : "primary"}>{children}</TextCustom>
-            {iconName && <FontAwesome name={iconName} size={16} color={isPrimary ? "white" : "#204397"}/>}
+            {iconName && <FontAwesome name={iconName} size={16} color={isPrimary ? "white" : Colors.primary}/>}
         </Pressable>
     )
 }

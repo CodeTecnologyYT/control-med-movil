@@ -13,7 +13,7 @@ module.exports = {
                 primary: "#204397",
                 secondary: "#16347A",
                 tertiary: "#546FAF",
-                background: "#7395E7"
+                background: "#F2F2F2"
             },
             fontFamily: {
                 'roboto-extrabold': ['Roboto-ExtraBold', 'sans-serif'],

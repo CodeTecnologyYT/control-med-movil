@@ -1,1 +1,0 @@
-export {AlarmMedicine} from './AlarmMedicine';

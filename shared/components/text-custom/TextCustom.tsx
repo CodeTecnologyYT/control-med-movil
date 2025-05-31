@@ -3,10 +3,11 @@ import {Text, TextProps} from "react-native";
 interface Props extends TextProps {
     variant?: 'xl' | 'lg' | 'md' | 'sm' | 'xs',
     textColor?: 'primary' | 'normal' | 'active' | 'subtitle',
-    textWeight?: 'bold' | 'semibold' | 'normal'
+    textWeight?: 'bold' | 'semibold' | 'normal',
+    className?: string,
 }
 
-export const TextCustom = ({variant = 'md', textColor = 'normal', textWeight = 'normal', ...rest}: Props) => {
+export const TextCustom = ({variant = 'md', textColor = 'normal', textWeight = 'normal', className, ...rest}: Props) => {
     return (
         <Text
             className={[
@@ -25,6 +26,7 @@ export const TextCustom = ({variant = 'md', textColor = 'normal', textWeight = '
                 textWeight === 'bold' && "font-roboto-bold",
                 textWeight === 'semibold' && "font-roboto-semibold",
                 textWeight === 'normal' && "font-roboto-regular",
+                className
             ].join(" ")}
             {...rest} />
     )

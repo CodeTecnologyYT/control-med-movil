@@ -1,2 +1,0 @@
-export {ItemAlarmMedicine} from "@/features/alarm/components/medicine/item-alarm-medicine/ItemAlarmMedicine"
-export {ListItemAlarmMedicine} from "@/features/alarm/components/medicine/list-item-alarm-medicine/ListItemAlarmMedicine"

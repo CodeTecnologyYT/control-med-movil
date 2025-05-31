@@ -27,7 +27,7 @@ const RootLayout = () => {
     if (!fontsLoaded && !error) return;
 
     return (
-        <GestureHandlerRootView>
+        <GestureHandlerRootView style={{ flex: 1 }}>
             <Slot/>
         </GestureHandlerRootView>
     );
