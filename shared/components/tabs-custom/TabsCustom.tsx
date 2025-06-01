@@ -1,10 +1,10 @@
-import {ComponentProps, JSX, ReactNode} from "react";
+import {JSX, ReactNode} from "react";
 import {View, TouchableOpacity, Text} from "react-native";
 import {BottomTabBarProps} from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons";
 import {Colors} from "@/shared/constants/colors";
 
-interface IconProps{
+interface IconProps {
     color?: string;
 }
 
@@ -12,15 +12,21 @@ type IconMap = {
     [key: string]: (props: IconProps) => JSX.Element;
 };
 
-export const TabsCustom = ({state, descriptors, navigation}: BottomTabBarProps) => {
+interface TabsCustomProps extends BottomTabBarProps {
+    activeDelete: boolean;
+    deleteAlarms: () => void;
+}
 
+export const TabsCustom = ({state, descriptors, navigation, activeDelete, deleteAlarms}: TabsCustomProps) => {
     const tabNameMain = "alarm/index";
     const icons: IconMap = {
         "home/index": (props: IconProps) => (
             <Ionicons name="home" size={20} color={Colors.primary} {...props} />
         ),
         "alarm/index": (props: IconProps) => (
-            <Ionicons name="add-circle" size={45} color={Colors.primary} {...props} />
+            <View className="bg-primary rounded-full px-4 py-4">
+                <Ionicons name={activeDelete ? "trash-bin-outline" : "add"} size={20} color={"white"}/>
+            </View>
         ),
         "setting/index": (props: IconProps) => (
             <Ionicons name="settings" size={22} color={Colors.primary} {...props} />
@@ -69,7 +75,7 @@ export const TabsCustom = ({state, descriptors, navigation}: BottomTabBarProps) 
                         accessibilityState={isFocused ? {selected: true} : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarButtonTestID}
-                        onPress={onPress}
+                        onPress={() => route.name === tabNameMain && activeDelete ? deleteAlarms() : onPress()}
                         onLongPress={onLongPress}
                     >
                         {

@@ -1,15 +1,21 @@
 import {Tabs} from 'expo-router';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {TabsCustom} from "@/shared/components";
+import {useAlarmContext} from "@/features/alarm/context/AlarmContext";
 
 const TabsLayout = () => {
+    const {activeDeleteAlarm, deleteAlarmsChecked} = useAlarmContext();
     return (
         <Tabs
-            tabBar={TabsCustom}
+            tabBar={(props) =>
+                <TabsCustom {...props} activeDelete={activeDeleteAlarm}
+                            deleteAlarms={deleteAlarmsChecked}/>}
             screenOptions={{
                 headerShown: false,
-                tabBarStyle: { backgroundColor: "transparent" },
-            }}>
+                tabBarStyle: {backgroundColor: "transparent"},
+                animation: 'fade'
+            }}
+        >
             <Tabs.Screen
                 name="home/index"
                 options={{

@@ -17,7 +17,7 @@ export const ButtonCustom = ({children, onPress, isPrimary = false, iconName}: P
     return (
         <Pressable
             className={[
-                "px-7 py-3 rounded-full self-baseline flex  flex-row items-center justify-center gap-2",
+                "px-7 py-3 rounded-full self-baseline flex  flex-row items-center justify-center gap-2 active:opacity-90",
                 // Background Color Primary
                 isPrimary ? "bg-primary" : "bg-white",
             ].join(" ")}

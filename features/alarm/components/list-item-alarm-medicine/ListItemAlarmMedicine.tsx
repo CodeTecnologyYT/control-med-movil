@@ -3,40 +3,35 @@ import {View} from "react-native";
 import {FlatList} from "react-native-gesture-handler";
 import {TextCustom} from "@/shared/components";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {ItemAlarmMedicine} from "@/features/alarm/components/medicine/item-alarm-medicine/ItemAlarmMedicine"
-import {useAlarmMedicine} from "@/features/alarm/hooks/useAlarmMedicine";
+import {ItemAlarmMedicine} from "@/features/alarm/components/item-alarm-medicine/ItemAlarmMedicine"
+import {useAlarmContext} from "@/features/alarm/context/AlarmContext";
 
 export const ListItemAlarmMedicine = () => {
-    const {alarms} = useAlarmMedicine();
-    const [isShow, setIsShow] = useState(false);
-    const [checkedIds, setCheckedIds] = useState<string[]>([]);
+    const {
+        alarms,
+        changeToggleDelete,
+        isShow,
+        checkedIds,
+        toggleCheckedAlarm,
+        toggleShowCheckAlarm,
+        sortedAlarms
+    } = useAlarmContext();
 
     const onPressHandler = (id: string) => {
         if (!isShow) return;
-        // Delete and add item select
-        setCheckedIds((prev) =>
-            prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-        );
+        toggleCheckedAlarm(id);
     };
 
     const onLongPressHandler = (id: string) => {
-        setIsShow(prevShow => {
-            const nextShow = !prevShow;
-            //Clean items and add item
-            if (nextShow) {
-                setCheckedIds([id])
-            } else {
-                setCheckedIds([]);
-            }
-            return nextShow;
-        });
+        changeToggleDelete();
+        toggleShowCheckAlarm(id);
     }
 
     return (
         <View className="flex-1 px-5">
             <View className="flex-row justify-between px-3 py-5">
                 <TextCustom textWeight="bold">12 Junio Miercoles</TextCustom>
-                <FontAwesome name="sort" size={16} color="gray"/>
+                <FontAwesome name="sort" size={16} color="gray" onPress={sortedAlarms}/>
             </View>
             <FlatList
                 data={alarms}
